@@ -1,6 +1,6 @@
 import type { ElectronAPI } from "@electron-toolkit/preload";
 
-import type { Api } from "../electron/preload";
+import type { Api } from "../preload";
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces

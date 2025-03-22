@@ -4,7 +4,7 @@
     "src/env.d.ts",
     "src/**/*",
     "src/**/*.svelte",
-    "electron/preload/*.d.ts"
+    "src/preload/*.d.ts"
   ],
   "compilerOptions": {
     "verbatimModuleSyntax": true,

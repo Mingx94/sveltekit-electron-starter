@@ -5,7 +5,8 @@ import { ExampleService } from "../main/services/example.service";
 
 const api = {
 	preload: () => console.log("Preload function called"),
-	ping: invoke<ExampleService["ping"]>("example:ping")
+	ping: invoke<ExampleService["ping"]>("example:ping"),
+	random: invoke<ExampleService["random"]>("example:random")
 };
 
 export type Api = typeof api;

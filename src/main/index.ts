@@ -1,9 +1,10 @@
 import { electronApp, is, optimizer } from "@electron-toolkit/utils";
-import { app, BrowserWindow, shell } from "electron";
+import { app, BrowserWindow, protocol, shell } from "electron";
 import serve from "electron-serve";
 import { join } from "path";
 
 import icon from "../../resources/icon.png?asset";
+import { registerFileProtocolHandler, registerFileProtocolSchema } from "./protocols/file";
 import { registerExampleService } from "./services/example.service";
 
 const loadURL = serve({
@@ -18,6 +19,8 @@ async function createWindow(): Promise<void> {
 		height: 670,
 		show: false,
 		autoHideMenuBar: true,
+		vibrancy: "fullscreen-ui",
+		titleBarStyle: "hiddenInset",
 		...(process.platform === "linux" ? { icon } : {}),
 		webPreferences: {
 			preload: join(__dirname, "../preload/index.cjs"),
@@ -25,6 +28,11 @@ async function createWindow(): Promise<void> {
 			contextIsolation: true
 		}
 	});
+
+	// Open the DevTools by default in dev mode.
+	if (is.dev) {
+		mainWindow.webContents.openDevTools();
+	}
 
 	mainWindow.on("ready-to-show", () => {
 		mainWindow.show();
@@ -46,6 +54,8 @@ async function createWindow(): Promise<void> {
 
 async function main() {
 	try {
+		registerFileProtocolSchema(protocol);
+
 		await app.whenReady();
 
 		// Set app user model id for windows
@@ -56,6 +66,10 @@ async function main() {
 		app.on("browser-window-created", (_, window) => {
 			optimizer.watchWindowShortcuts(window);
 		});
+
+		// Protocols must be registered after the app is ready but before the window is created
+		// else they wont work until the window is reloaded
+		registerFileProtocolHandler(protocol);
 
 		await createWindow();
 

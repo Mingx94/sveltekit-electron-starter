@@ -45,17 +45,27 @@ npm run build:linux
 npm run test
 ```
 
+### File protocol
+
+For loading files use the custom `fs://` protocol. The default electron files protocol doesn't work with sveltekit.
+
+```html
+<!-- Example -->
+<img src="fs:///Users/user/Downloads/image.jpeg" alt="" />
+```
+
 ## Project Structure
 
 ```shell
 project
-├── electron                    # Electron folder
-│   ├── main                    # Main scripts
-│   └── preload                 # Preload scripts
 ├── resources                   # Application resources
-├── src                         # SvelteKit (renderer) folder
-│   ├── lib                     # Lib folder for SvelteKit
-│   └── routes                  # Routes
+├── src                         #
+│   ├── main                    # Main scripts
+│   ├── preload                 # Preload scripts
+│   ├── renderer                # SvelteKit (renderer) folder
+│   │   ├── lib                 # Lib folder for SvelteKit
+│   │   └── routes              # Routes
+│   └── shared                  # Shared files between main, preload and renderer
 ├── static                      # Static assets for SvelteKit
 ├── electron.vite.config.ts
 ├── eslint.config.mjs

@@ -14,7 +14,12 @@ const config = defineConfig({
 			outDir: "out/electron/main",
 			lib: {
 				formats: ["es"],
-				entry: "./electron/main/index.ts"
+				entry: "./src/main/index.ts"
+			}
+		},
+		resolve: {
+			alias: {
+				"@shared": resolve("src/shared")
 			}
 		}
 	},
@@ -24,11 +29,16 @@ const config = defineConfig({
 				exclude: ["@electron-toolkit/preload"]
 			})
 		],
+		resolve: {
+			alias: {
+				"@shared": resolve("src/shared")
+			}
+		},
 		build: {
 			outDir: "out/electron/preload",
 			lib: {
 				formats: ["cjs"],
-				entry: "./electron/preload/index.ts"
+				entry: "./src/preload/index.ts"
 			}
 		}
 	},

@@ -11,7 +11,24 @@ const config = {
 		adapter: adapter({
 			pages: "out/svelte",
 			assets: "out/svelte"
-		})
+		}),
+		files: {
+			// assets: "src/renderer/assets",
+			hooks: {
+				client: "src/renderer/hooks.client",
+				server: "src/renderer/hooks.server",
+				universal: "src/renderer/hooks"
+			},
+			lib: "src/renderer/lib",
+			params: "src/renderer/params",
+			routes: "src/renderer/routes",
+			serviceWorker: "src/renderer/service-worker",
+			appTemplate: "src/renderer/app.html",
+			errorTemplate: "src/renderer/error.html"
+		},
+		alias: {
+			$shared: "src/shared"
+		}
 	}
 };
 

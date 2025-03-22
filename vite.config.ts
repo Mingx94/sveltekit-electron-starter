@@ -1,6 +1,7 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { svelteTesting } from "@testing-library/svelte/vite";
+import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -27,8 +28,14 @@ export default defineConfig({
 				test: {
 					name: "server",
 					environment: "node",
-					include: ["src/**/*.{test,spec}.{js,ts}", "electron/**/*.{test,spec}.{js,ts}"],
+					include: ["src/**/*.{test,spec}.{js,ts}"],
 					exclude: ["src/**/*.svelte.{test,spec}.{js,ts}"]
+				},
+
+				resolve: {
+					alias: {
+						"@shared": resolve("src/shared")
+					}
 				}
 			}
 		]
