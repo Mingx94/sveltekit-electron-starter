@@ -50,7 +50,7 @@ const config = defineConfig({
 			}
 		},
 		build: {
-			target: ["chrome126"]
+			target: ["esnext"]
 		}
 	}
 });

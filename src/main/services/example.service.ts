@@ -1,4 +1,4 @@
-import { err, ok, Result } from "@shared/utils/result";
+import { err, ok, type Result } from "@shared/utils/result";
 import { ipcMain } from "electron";
 
 type RandomError = { type: "RANDOM_ERROR" };
