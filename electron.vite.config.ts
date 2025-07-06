@@ -1,8 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
 import { sveltekit } from "@sveltejs/kit/vite";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, externalizeDepsPlugin } from "electron-vite";
 import { resolve } from "path";

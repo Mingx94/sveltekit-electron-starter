@@ -10,6 +10,7 @@
     "composite": true,
     "types": ["electron-vite/node"],
     "esModuleInterop": true,
+    "moduleResolution": "bundler",
     "paths": {
       "@shared/*": ["./src/shared/*"]
     }
